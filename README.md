@@ -3,6 +3,9 @@
 The [suckless terminal (st)](https://st.suckless.org/) with some additional
 features that make it literally the best terminal emulator ever:
 
+I only added dynamic cursor color and vim mode to Luke's build.
+Vim mode key is alt+space. The i/enter/esc key exits vi mode.
+
 ## Unique features (using dmenu)
 
 + **follow urls** by pressing `alt-l`
