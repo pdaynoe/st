@@ -1,4 +1,5 @@
 # Luke's build of st - the simple (suckless) terminal
+Luke Smith <luke@lukesmith.xyz> [https://lukesmith.xyz](https://lukesmith.xyz)
 
 The [suckless terminal (st)](https://st.suckless.org/) with some additional
 features that make it literally the best terminal emulator ever:
@@ -43,7 +44,7 @@ Also follow-url is set to `alt+f`.
 You should have xlib header files and libharfbuzz build files installed.
 
 ```
-git clone https://github.com/LukeSmithxyz/st
+git clone https://github.com/pdaynoe/st
 cd st
 sudo make install
 ```
@@ -100,7 +101,3 @@ want to manually set your prefered emoji/special character font to a lower size
 in the `config.h` file to avoid this. By default, JoyPixels is used at a
 smaller size than the usual text.
 
-## Contact
-
-- Luke Smith <luke@lukesmith.xyz>
-- [https://lukesmith.xyz](https://lukesmith.xyz)
