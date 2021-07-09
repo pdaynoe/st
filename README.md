@@ -3,9 +3,6 @@
 The [suckless terminal (st)](https://st.suckless.org/) with some additional
 features that make it literally the best terminal emulator ever:
 
-I only added dynamic cursor color and vim mode to Luke's build.
-Vim mode key is alt+space. The i/enter/esc key exits vi mode.
-
 ## Unique features (using dmenu)
 
 + **follow urls** by pressing `alt-l`
@@ -14,8 +11,8 @@ Vim mode key is alt+space. The i/enter/esc key exits vi mode.
 
 ## Bindings for
 
-+ **scrollback** with `alt-↑/↓` or `alt-pageup/down` or `shift` while scrolling the
-  mouse.
++ scroll with `alt-↑/↓` or `alt-pageup/down` or `shift` while scrolling the
+  mouse (via [scroll](https://github.com/lukesmithxyz/scroll)).
 + OR **vim-bindings**: scroll up/down in history with `alt-k` and `alt-j`.
   Faster with `alt-u`/`alt-d`.
 + **zoom/change font size**: same bindings as above, but holding down shift as
@@ -47,8 +44,11 @@ cd st
 sudo make install
 ```
 
+Note that [scroll](https://github.com/lukesmithxyz/scroll) is automatically
+pulled and installed when you make this build of st.
+
 Obviously, `make` is required to build. `fontconfig` is required for the
-default build, since it asks `fontconfig` for your system monospace font. It
+default build, since it asks `fontconfig` for your system monospace font.  It
 might be obvious, but `libX11` and `libXft` are required as well. Chances are,
 you have all of this installed already.
 

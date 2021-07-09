@@ -107,7 +107,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 1.0;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 
@@ -147,6 +147,23 @@ unsigned int defaultbg = 258;
 unsigned int defaultcs = 256;
 unsigned int defaultrcs = 257;
 unsigned int background = 258;
+
+unsigned int const currentBg = 6, buffSize = 2048;
+/// Enable double / triple click yanking / selection of word / line.
+int const mouseYank = 1, mouseSelect = 0;
+/// [Vim Browse] Colors for search results currently on screen.
+unsigned int const highlightBg = 160, highlightFg = 15;
+char const wDelS[] = "!\"#$%&'()*+,-./:;<=>?@[\\]^`{|}~", wDelL[] = " \t";
+char *nmKeys [] = {              ///< Shortcusts executed in normal mode
+  "R/Building\nN", "r/Building\n", "X/juli@machine\nN", "x/juli@machine\n",
+  "Q?[Leaving vim, starting execution]\n","F/: error:\nN", "f/: error:\n", "DQf"
+};
+unsigned int const amountNmKeys = sizeof(nmKeys) / sizeof(*nmKeys);
+/// Style of the {command, search} string shown in the right corner (y,v,V,/)
+Glyph styleSearch = {' ', ATTR_ITALIC | ATTR_BOLD_FAINT, 7, 16};
+Glyph style[] = {{' ',ATTR_ITALIC|ATTR_FAINT,15,16}, {' ',ATTR_ITALIC,232,11},
+                 {' ', ATTR_ITALIC, 232, 4}, {' ', ATTR_ITALIC, 232, 12}};
+
 
 /*
  * Default shape of cursor
@@ -263,6 +280,7 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+ 	{ MODKEY,               XK_space,       normalMode,     {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
@@ -273,6 +291,7 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
 	{ MODKEY,               XK_u,           kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
+	{ MODKEY,               XK_b,           kscrolldown,    {.i = -1} },
 	{ MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
 	{ MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
 	{ TERMMOD,              XK_Up,          zoom,           {.f = +1} },
@@ -281,10 +300,11 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
 	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
 	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
-	{ MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
+	{ MODKEY,               XK_f,           externalpipe,   {.v = openurlcmd } },
 	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
 	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
 };
+ 
 
 /*
  * Special keys (change & recompile st.info accordingly)
