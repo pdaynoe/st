@@ -9,7 +9,7 @@ Also follow-url is set to `alt+f`.
 
 ## Unique features (using dmenu)
 
-+ **follow urls** by pressing `alt-l`
++ **follow urls** by pressing `alt-f`
 + **copy urls** in the same way with `alt-y`
 + **copy the output of commands** with `alt-o`
 
